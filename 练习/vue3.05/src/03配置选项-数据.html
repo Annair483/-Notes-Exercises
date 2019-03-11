@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+</head>
+<body>
+    
+    <h1>03配置选项-数据</h1>
+    <div id="app"></div>
+    <template id="user">
+        <div class="box">
+                <h2>{{username}}</h2>
+                <h3>{{password}}</h3>
+                <h4>{{nickname}}</h4>
+                <img :src="touxiang" alt="">
+                <p>reverseUsername:{{reverseUsername}}</p>
+                <p>numbers:{{numbers}}</p>
+                <p>ltnumber:{{ltnumber}}</p>
+        </div>
+    </template>
+    <script>
+        /*
+        *computed里写函数
+        *在HTML执行写{{函数名}}
+        *写逻辑的时候可以用computed
+        */
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                username:'jingjing', 
+                nickname:'我想静静',
+                password:123456,
+                touxiang:'./img/mv3.jpg',
+                regtime:Date.now(),
+                numbers:[10,2,6,12,20,3]
+            },
+            template:'#user',
+            computed:{
+                reverseUsername(){
+                    return this.username.split('').reverse().join('');
+                },
+                ltnumber(){
+                    return this.numbers.filter(num=>num<10)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

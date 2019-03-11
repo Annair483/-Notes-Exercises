@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+	<script src="lib/vue.js"></script>
+	<style>
+		th label{margin:0;}
+            td img{height:30px;width:30px;}
+            .player audio{width:100%;}
+        </style>
+</head>
+
+<body>
+	<div id="app" class="container-fluid">
+		<h1>表格操作</h1>
+		<table class="table table-striped table-sm">
+			<thead>
+				<th><label><input type="checkbox" v-model="checkAll">全选</label></th>
+				<th>#</th>
+				<th>歌手</th>
+				<th>曲名</th>
+				<th>封面</th>
+				<th>文件地址</th>
+				<th>操作</th>
+			</thead>
+			{{selected}}-{{$refs.player}}
+			<tbody>
+				<tr v-for="(song,idx) in songs" @click="select(idx)">
+					<td><label><input type="checkbox" v-model="selected" :value="idx" /></label></td>
+					<td>{{idx+1}}</td>
+					<td>{{song.singer}}</td>
+					<td>{{song.name}}</td>
+					<td><img :src="song.filename" /></td>
+					<td>{{song.src}}</td>
+					<td>
+						<div class="btn-group btn-group-sm">
+							<button class="btn btn-outline-success" @click.stop="play(idx)">{{currentIndex==idx&&!player.paused?'暂停':'播放'}}</button>
+							<button class="btn btn-outline-danger" @click.stop="remove(idx)">删除</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="player">
+			<audio :src="songs[currentIndex].src" controls ref="player"></audio>
+		</div>
+	</div>
+	<script>
+		let vm = new Vue({
+			el: '#app',
+			data: {
+				player: {},
+				selected: [],
+				currentIndex: 0,
+				songs: [{
+						"src": "media/aLIEz.flac",
+						"singer": "beyond",
+						"name": "喜欢你",
+						"filename": "media/beyond - 喜欢你.jpg"
+					},
+					{
+						"src": "media/Air - 鸟之诗.flac",
+						"singer": "beyond",
+						"name": "真的爱你",
+						"filename": "media/beyond - 真的爱你.jpg"
+					},
+					{
+						"src": "media/Aimer - 悲しみはオーロラに.flac",
+						"singer": "方大同",
+						"name": "红豆",
+						"filename": "media/方大同 - 红豆 - 完整版.jpg"
+					},
+					{
+						"src": "media/Adam Lambert - Trespassing.ape",
+						"singer": "杨坤",
+						"name": "无所谓",
+						"filename": "media/杨坤 - 无所谓.jpg"
+					},
+					{
+						"src": "media/44 - Maroon 5 Ft. Christina Aguilera.ape",
+						"singer": "陈冠蒲",
+						"name": "蓝眼泪",
+						"filename": "media/陈冠蒲-蓝眼泪.jpg"
+					},
+					{
+						"src": "media/aLIEz.flac",
+						"singer": "beyond",
+						"name": "喜欢你",
+						"filename": "media/beyond - 喜欢你.jpg"
+					},
+					{
+						"src": "media/Air - 鸟之诗.flac",
+						"singer": "beyond",
+						"name": "真的爱你",
+						"filename": "media/beyond - 真的爱你.jpg"
+					},
+					{
+						"src": "media/Aimer - 悲しみはオーロラに.flac",
+						"singer": "方大同",
+						"name": "红豆",
+						"filename": "media/方大同 - 红豆 - 完整版.jpg"
+					},
+					{
+						"src": "media/Adam Lambert - Trespassing.ape",
+						"singer": "杨坤",
+						"name": "无所谓",
+						"filename": "media/杨坤 - 无所谓.jpg"
+					},
+					{
+						"src": "media/44 - Maroon 5 Ft. Christina Aguilera.ape",
+						"singer": "陈冠蒲",
+						"name": "蓝眼泪",
+						"filename": "media/陈冠蒲-蓝眼泪.jpg"
+					}, {
+						"src": "media/aLIEz.flac",
+						"singer": "beyond",
+						"name": "喜欢你",
+						"filename": "media/beyond - 喜欢你.jpg"
+					},
+					{
+						"src": "media/Air - 鸟之诗.flac",
+						"singer": "beyond",
+						"name": "真的爱你",
+						"filename": "media/beyond - 真的爱你.jpg"
+					},
+					{
+						"src": "media/Aimer - 悲しみはオーロラに.flac",
+						"singer": "方大同",
+						"name": "红豆",
+						"filename": "media/方大同 - 红豆 - 完整版.jpg"
+					},
+					{
+						"src": "media/Adam Lambert - Trespassing.ape",
+						"singer": "杨坤",
+						"name": "无所谓",
+						"filename": "media/杨坤 - 无所谓.jpg"
+					},
+					{
+						"src": "media/44 - Maroon 5 Ft. Christina Aguilera.ape",
+						"singer": "陈冠蒲",
+						"name": "蓝眼泪",
+						"filename": "media/陈冠蒲-蓝眼泪.jpg"
+					}, {
+						"src": "media/aLIEz.flac",
+						"singer": "beyond",
+						"name": "喜欢你",
+						"filename": "media/beyond - 喜欢你.jpg"
+					},
+					{
+						"src": "media/Air - 鸟之诗.flac",
+						"singer": "beyond",
+						"name": "真的爱你",
+						"filename": "media/beyond - 真的爱你.jpg"
+					},
+					{
+						"src": "media/Aimer - 悲しみはオーロラに.flac",
+						"singer": "方大同",
+						"name": "红豆",
+						"filename": "media/方大同 - 红豆 - 完整版.jpg"
+					},
+					{
+						"src": "media/Adam Lambert - Trespassing.ape",
+						"singer": "杨坤",
+						"name": "无所谓",
+						"filename": "media/杨坤 - 无所谓.jpg"
+					},
+					{
+						"src": "media/44 - Maroon 5 Ft. Christina Aguilera.ape",
+						"singer": "陈冠蒲",
+						"name": "蓝眼泪",
+						"filename": "media/陈冠蒲-蓝眼泪.jpg"
+					}
+				]
+			},
+			computed: {
+				checkAll: {
+					//用every遍历songs，遍历每个songs的idx是否能在selected里找到，全能找到返回true，有一个没有找到返回false
+					get() {
+						return this.songs.every((song, idx) => this.selected.includes(idx))
+					},
+					//判断checked的true、false，true则把songs的所有idx存到selected，反之清空selected
+					set(val) {
+						this.selected = val ? this.songs.map((item, idx) => idx) : [];
+					}
+				}
+
+			},
+			methods: {
+				select(idx) {
+					//获取idx在数组中的位置
+					let index = this.selected.indexOf(idx);
+					//判断是否存在当前索引值
+					if (index >= 0) {
+						//如果以勾选，则取消勾选,反正勾上
+						this.selected.splice(index, 1);
+					} else {
+						this.selected.push(idx)
+					}
+				},
+				remove(idx) {
+					this.songs.splice(idx, 1);
+				},
+				play(idx) {
+					//点击播放时把currentIndex替换成idx
+					this.currentIndex = idx;
+					//用ref获取DOM节点，点击时立即播放歌曲
+					let {
+						player
+					} = this.$refs;
+					//因为替换src时会有一个载入的过程，会异步，所以用nextTick，即节点更新后执行代码
+					this.$nextTick(() => {
+						player.paused ? player.play() : player.pause();
+						//更新数据后，视图没有更新，所以强制更新
+						this.$forceUpdate();
+					});
+				}
+			},
+			//数据挂载成功后把播放器存到player里
+			mounted() {
+				this.player = this.$refs.player
+			}
+		})
+	</script>
+</body>
+
+</html>

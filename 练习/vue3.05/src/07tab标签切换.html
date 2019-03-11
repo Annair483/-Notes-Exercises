@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- <h1>07tab标签切换</h1> -->
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class="nav-item" v-for="(tab,idx) in tabs " @click.stop="changeActive(idx)">
+                <a :class="{'nav-link':true, active:idx==active}" href="#" >{{tab.title}}</a>
+            </li>
+        </ul>
+        <div class="content" v-for="(tab,idx) in tabs" v-show="idx==active">{{tab.content}}</div>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '.container',
+            data: {
+                tabs: [{
+                        title: 'laoxie',
+                        imgurl: 'img/mv1.jpg',
+                        content: 'laoxie最爱敲代码'
+                    },
+                    {
+                        title: 'jingjing',
+                        imgurl: 'img/mv2.png',
+                        content: 'jingjing最爱健身'
+                    },
+                    {
+                        title: 'tingting',
+                        imgurl: 'img/mv3.jpg',
+                        content: 'tingting最爱和静静健身'
+                    }
+                ],
+                active:0
+            },
+            methods:{
+                changeActive(idx){
+                    this.active=idx;
+                    // console.log(idx)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

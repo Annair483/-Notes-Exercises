@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+</head>
+
+<body>
+    <h1>配置选项</h1>
+    <div id="app">
+        <h4>账号:{{username}}</h4>
+        <input type="text">
+    </div>
+    <template id="mybox">
+       <div class="box">
+            outertemplate ：{{username}}
+        <input type="text" v-model="password" />
+       </div>
+    </template>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                username: 'laoxie',
+                password: 123456,
+                gender: '男'
+            },
+            //Selector：提取内容到template标签，并指定选择器
+            template:'#mybox'//会覆盖挂载点里的内容
+        })
+    </script>
+</body>
+
+</html>

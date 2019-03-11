@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="lib/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <div v-zhang:name.stop="user">bbb</div>
+        aaa
+    </div>
+    <div id="aaa">
+        <!-- <div v-lao-zhang:se.aap="user"></div> -->
+        <!-- <div v-zhangobj>bbb</div>
+        <div v-zhangzhang>abc</div> -->
+        bbb
+    </div>
+    <div id="abc">
+        <div v-zhangobj:aab.aaa="user">bbb</div>
+        <div v-zhangzhang:aab.aaa="user">abc</div>
+
+    </div>
+    <script>
+        //直接使用function函数，默认为bind和update钩子函数
+        Vue.directive('zhang', function (el, binding) {
+
+            console.log('bind', el, binding)
+            el.innerHTML =
+                'name: ' + JSON.stringify(binding.name) + '<br>' + //指令名
+                'value: ' + JSON.stringify(binding.value) + '<br>' + //指令值
+                'expression: ' + JSON.stringify(binding.expression) + '<br>' + //字符串形式的指令表达式
+                'arg: ' + JSON.stringify(binding.arg) + '<br>' + //指令参数，
+                'modifiers: ' + JSON.stringify(binding.modifiers) + '<br>' //指令修饰符
+        })
+        //使用对象
+        Vue.directive('laoZhang', {
+            bind(el, binding, vnode) {
+                console.log('bind', el, binding)
+                el.innerHTML =
+                    'name: ' + JSON.stringify(binding.name) + '<br>' + //指令名
+                    'value: ' + JSON.stringify(binding.value) + '<br>' + //指令值
+                    'expression: ' + JSON.stringify(binding.expression) + '<br>' + //字符串形式的指令表达式
+                    'arg: ' + JSON.stringify(binding.arg) + '<br>' + //指令参数，
+                    'modifiers: ' + JSON.stringify(binding.modifiers) + '<br>' //指令修饰符
+            },
+            inserted(el, binding, vnode){
+                console.log('inserted', el, binding)
+            }
+        })
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                user: 'xixi'
+            }
+        })
+        let aa = new Vue({
+            el: "#aaa",
+            data: {
+                user: 'haha'
+            }
+        })
+        //局部自定义指令
+        let bb = new Vue({
+            el: "#abc",
+            data: {
+                user: 'haha'
+            },
+            directives: {
+                zhangzhang(el,binding){
+                    el.innerHTML = '局部function'
+                },
+                zhangobj:{
+                    bind(el,binding,vnode){
+                        el.innerHTML = '局部对象bind'
+                    },
+                    inserted(el,binding,vnode){
+                        el.innerHTML = '局部对象inserted'
+
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
