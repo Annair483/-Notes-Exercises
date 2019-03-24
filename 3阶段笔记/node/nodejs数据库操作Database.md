@@ -361,7 +361,7 @@ MongoDB是一个基于分布式文件存储的数据库，由C++语言编写，�
         * --file ：要导入的文件
 ```bash 
      mongoimport -d mongotest -c goods --file D:/data/goods.json --type json
-      mongoimport -d vueProject -c icon --file E:\fanthful商城网\Vue-fanthful-App\fanthful_project\src\node\database\icon.csv --type csv --headerline 
+      mongoimport -d vueProject -c icon --file C:\Users\Administrator\Desktop\fanthful_project\database\icon.csv --type csv --headerline 
 ```
 
 ### MongoDB备份与恢复
