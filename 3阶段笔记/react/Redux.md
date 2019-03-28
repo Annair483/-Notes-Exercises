@@ -91,7 +91,10 @@ Redux ，也可以使用 Redux 而不使用 React
 
     //...
 
-    MyComponent = connect(state=>state,dispatch=>bindActionCreators(ActionCreator,dispatch))(MyComponent)
+    MyComponent = connect(
+        state=>state
+        ,dispatch=>bindActionCreators(ActionCreator,dispatch)
+    )(MyComponent)
     
 ```
 
