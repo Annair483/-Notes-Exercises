@@ -172,7 +172,7 @@ Babel解析规则：
         MyComponent.defaultProps = {
           name: 'laoxie'
         }
-
+    
         //ES6写法
         static defaultProps = {
             name: 'laoxie'
@@ -227,7 +227,8 @@ Babel解析规则：
 
     * 依赖上次setState的结果
     >格式：`setState(fn [,callback])`
-        * fn(prevState)
+    >
+    >   * fn(prevState)
 
     >PS：调用setState()并不会马上修改 state。而是进入到一个更新队列里面，所以不能在组件内部通过this.state直接修改状态，因为修改后会被setState()替换（如下两次输出都为false）
 
