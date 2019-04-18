@@ -80,6 +80,7 @@ WebPack可以看做是模块打包机：它做的事情是，分析你的项目�
     - development
     - none
 * modules
+
   - rules: 配置Loader（加载器）规则（[详情](#Loader（加载器）)）
 * plugin:插件（[详情](#Plugins（插件）)）
 * resolve
@@ -97,7 +98,7 @@ WebPack可以看做是模块打包机：它做的事情是，分析你的项目�
             extensions:['.js', '.json']
         }
     ```
-      
+    
 
 ### 运行
 * 写好配置文件后，在终端里运行命令进行打包操作
